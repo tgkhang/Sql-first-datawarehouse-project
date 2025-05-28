@@ -1,3 +1,5 @@
+--CRM CUST INFO TABLE CHECK
+
 -- Check for null and duplicate primary key
 -- Expect: no result
 
@@ -23,3 +25,27 @@ from silver.crm_cust_info
 
 select distinct cst_marital_status
 from silver.crm_cust_info
+
+--============================
+-- CRM PRD INFO TABLE CHECK
+select prd_id, count(*) as "nums appearance" 
+from silver.crm_prd_info
+group by prd_id
+having count(*)>1 or prd_id IS NULL
+
+
+-- Check for unwanted spaces
+-- Expected no result
+select prd_nm
+from silver.crm_prd_info
+where prd_nm != TRIM(prd_nm)
+
+-- check fo rnulls or negative number
+-- expect no res
+-- if have replace that with 0 in transformation
+select prd_cost
+from silver.crm_prd_info
+where prd_cost<0 or prd_cost is null
+
+select distinct prd_line
+from silver.crm_prd_info
