@@ -51,7 +51,7 @@ select distinct prd_line
 from silver.crm_prd_info
 
 
--- .erp_cust_az12 check silver
+-- CHECK silver erp_cust_az12 
 select distinct 
 bdate
 from silver.erp_cust_az12
@@ -61,3 +61,22 @@ select distinct gen
 from silver.erp_cust_az12
 
 select * from silver.erp_cust_az12
+
+
+-- check silver erp_loc_a101
+
+select distinct 
+cntry 
+from silver.erp_loc_a101
+order by cntry
+
+
+select 
+cid
+from silver.erp_loc_a101
+where cid not in 
+(
+	select cst_key from silver.crm_cust_info
+)
+
+select * from silver.erp_loc_a101
