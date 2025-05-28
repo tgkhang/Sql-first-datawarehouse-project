@@ -49,3 +49,15 @@ where prd_cost<0 or prd_cost is null
 
 select distinct prd_line
 from silver.crm_prd_info
+
+
+-- .erp_cust_az12 check silver
+select distinct 
+bdate
+from silver.erp_cust_az12
+where bdate <'1925-01-01' or bdate > GETDATE()
+
+select distinct gen
+from silver.erp_cust_az12
+
+select * from silver.erp_cust_az12
