@@ -80,7 +80,8 @@ from bronze.crm_prd_info
 -- replace
 select 
 prd_id,
-prd_key,
+--prd_key,
+SUBSTRING(prd_key, 7, LEN(prd_key)) as prd_key,       -- extract prodcut key
 REPlACE(SUBSTRING(prd_key, 1,5),'-','_') as cat_id,
 prd_nm,
 ISNULL(prd_cost,0) as prd_cost,
@@ -105,7 +106,7 @@ where prd_end_dt < prd_start_dt
 --test for end date next chosing
 select 
 prd_id,
-prd_key,
+SUBSTRING(prd_key, 7, LEN(prd_key)) as prd_key,       -- extract prodcut key
 prd_nm,
 prd_start_dt,
 prd_end_dt,
@@ -126,9 +127,9 @@ insert into silver.crm_prd_info(
 )
 select 
 prd_id,
-prd_key,
+--prd_key,
 REPlACE(SUBSTRING(prd_key, 1,5),'-','_') as cat_id,  -- extract category id
---SUBSTRING(prd_key, 7, LEN(prd_key)) as prd_id,       -- extract prodcut key
+SUBSTRING(prd_key, 7, LEN(prd_key)) as prd_key,       -- extract prodcut key
 prd_nm,												
 ISNULL(prd_cost,0) as prd_cost,
 case UPPER(TRIM(prd_line))
