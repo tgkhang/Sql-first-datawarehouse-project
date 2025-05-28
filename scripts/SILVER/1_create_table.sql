@@ -1,6 +1,9 @@
 USE Datawarehouse;
 GO
 
+create schema silver;
+go
+
 -- notice the naming convention, format the style after coding
 -- Drop and create crm_cust_info
 IF OBJECT_ID('silver.crm_cust_info', 'U') IS NOT NULL
